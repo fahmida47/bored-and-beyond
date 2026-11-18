@@ -1,0 +1,136 @@
+
+.name-screen {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 20px 30px;
+  color: white;
+}
+
+.name-back {
+  position: absolute;
+  top: 15px;
+  left: 3%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 20px;
+  color: white;
+  background: rgba(20, 15, 65, 0.85);
+  border: 2px solid #a98bff;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.name-box {
+  width: min(480px, 100%);
+  padding: 45px 35px;
+  text-align: center;
+  border: 2px solid #d18bff;
+  border-radius: 25px;
+  background: rgba(26, 15, 75, 0.92);
+  box-shadow: 0 0 35px rgba(190, 100, 255, 0.3);
+}
+
+.name-sparkle {
+  color: #ffd36e;
+  font-size: 27px;
+  margin-bottom: 15px;
+}
+
+.name-eyebrow {
+  color: #dba8ff;
+  letter-spacing: 4px;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.name-box h1 {
+  color: #f0caff;
+  font-size: 36px;
+  margin: 18px 0 10px;
+  text-shadow: 0 0 15px #bd65ff;
+}
+
+.name-description {
+  color: #e5c5ff;
+  line-height: 1.6;
+}
+
+.selected-character {
+  margin: 25px 0;
+  color: #d8c8ff;
+}
+
+.selected-character strong {
+  color: #ffb1f4;
+}
+
+.player-name-input {
+  width: 100%;
+  padding: 16px;
+  border: 2px solid #a77cff;
+  border-radius: 12px;
+  outline: none;
+  background: rgba(9, 8, 40, 0.9);
+  color: white;
+  font-size: 16px;
+  text-align: center;
+}
+
+.player-name-input:focus {
+  border-color: #f29aff;
+  box-shadow: 0 0 15px rgba(225, 125, 255, 0.4);
+}
+
+.player-name-input::placeholder {
+  color: #9e8bbd;
+}
+
+.name-continue {
+  width: 100%;
+  margin-top: 20px;
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border: 2px solid #f19aff;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #8749bd, #b34fbd);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.name-continue:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 0 22px #d66cff;
+}
+
+.name-continue:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.name-footer {
+  margin-top: 25px;
+  color: #bca5d9;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+@media (max-width: 480px) {
+  .name-box {
+    padding: 35px 20px;
+  }
+
+  .name-box h1 {
+    font-size: 29px;
+  }
+}

@@ -1,0 +1,73 @@
+
+.game-screen {
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url("/rooftop-bg.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #f1eaff;
+  font-family: "Trebuchet MS", sans-serif;
+}
+
+.background-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(5, 7, 30, 0.12),
+    rgba(7, 5, 35, 0.28)
+  );
+  pointer-events: none;
+}
+
+.version,
+.copyright {
+  position: absolute;
+  z-index: 4;
+  color: #d5b9ff;
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+
+.version {
+  top: 22px;
+  right: 28px;
+}
+
+.copyright {
+  bottom: 18px;
+  left: 25px;
+}
+
+.next-screen {
+  position: relative;
+  z-index: 3;
+  padding: 35px;
+  text-align: center;
+  border: 2px solid #8060d9;
+  border-radius: 15px;
+  background: rgba(15, 9, 48, 0.92);
+}
+
+.next-screen .game-button {
+  margin: 20px auto 0;
+}
+
+@media (max-width: 650px) {
+  .version {
+    top: 10px;
+    right: 12px;
+  }
+
+  .copyright {
+    bottom: 9px;
+    left: 10px;
+    font-size: 10px;
+  }
+}

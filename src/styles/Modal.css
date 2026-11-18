@@ -1,0 +1,76 @@
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(3, 2, 20, 0.75);
+  backdrop-filter: blur(7px);
+}
+
+.game-modal {
+  position: relative;
+  width: min(360px, 90%);
+  box-sizing: border-box;
+  padding: 35px 25px;
+  border: 2px solid #a77be9;
+  border-radius: 16px;
+  background: linear-gradient(145deg, #211449, #100c35);
+  color: #e9d9ff;
+  text-align: center;
+  box-shadow: 0 0 35px rgba(156, 88, 255, 0.4);
+}
+
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  border: 0;
+  background: transparent;
+  color: #d7baff;
+  cursor: pointer;
+}
+
+.modal-icon {
+  color: #d9a0ff;
+}
+
+.game-modal h2 {
+  color: #f2dcff;
+  font-family: Georgia, serif;
+}
+
+.game-modal p {
+  color: #cbb9e5;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.credit-name {
+  color: #e5adff !important;
+  font-weight: bold;
+}
+
+.sound-toggle,
+.modal-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  margin-top: 22px;
+  padding: 13px;
+  border: 2px solid #9869db;
+  border-radius: 9px;
+  background: #39216e;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.sound-toggle:hover,
+.modal-action:hover {
+  background: #59329c;
+}
