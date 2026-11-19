@@ -1,6 +1,8 @@
 
 import { useEffect, useRef, useState } from "react";
+
 import { motion } from "framer-motion";
+
 import {
   ArrowLeft,
   ArrowRight,
@@ -40,6 +42,7 @@ function createItem(id) {
 
 function LevelOne({ playerName, character, onBack, onNext }) {
   const [screen, setScreen] = useState("instructions");
+  const [isMoving, setIsMoving] = useState(false);
 
   const [game, setGame] = useState({
     playerX: 50,
@@ -50,12 +53,14 @@ function LevelOne({ playerName, character, onBack, onNext }) {
 
   const nextId = useRef(0);
   const tickCount = useRef(0);
+  const movementDirection = useRef(0);
 
   const characterImage =
     character === "boy"
       ? "/images/boy-character.png"
       : "/images/girl-character.png";
 
+  // Move player one step
   const movePlayer = (direction) => {
     setGame((previous) => ({
       ...previous,
@@ -66,9 +71,25 @@ function LevelOne({ playerName, character, onBack, onNext }) {
     }));
   };
 
+  // Start continuous movement
+  const startMoving = (direction) => {
+    movementDirection.current = direction;
+    setIsMoving(true);
+  };
+
+  // Stop movement
+  const stopMoving = () => {
+    movementDirection.current = 0;
+    setIsMoving(false);
+  };
+
+  // Start game
   const startGame = () => {
     nextId.current = 0;
     tickCount.current = 0;
+    movementDirection.current = 0;
+
+    setIsMoving(false);
 
     setGame({
       playerX: 50,
@@ -80,7 +101,9 @@ function LevelOne({ playerName, character, onBack, onNext }) {
     setScreen("playing");
   };
 
+  // Restart game
   const restartGame = () => {
+    stopMoving();
     setScreen("instructions");
   };
 
@@ -92,28 +115,60 @@ function LevelOne({ playerName, character, onBack, onNext }) {
       const key = event.key.toLowerCase();
 
       if (
-        key === "arrowleft" ||
-        key === "arrowright" ||
-        key === "a" ||
-        key === "d"
+        ["arrowleft", "arrowright", "a", "d"].includes(key)
       ) {
         event.preventDefault();
       }
 
       if (key === "arrowleft" || key === "a") {
-        movePlayer(-1);
+        startMoving(-1);
       }
 
       if (key === "arrowright" || key === "d") {
-        movePlayer(1);
+        startMoving(1);
+      }
+    };
+
+    const handleKeyUp = (event) => {
+      const key = event.key.toLowerCase();
+
+      if (
+        ["arrowleft", "arrowright", "a", "d"].includes(key)
+      ) {
+        stopMoving();
       }
     };
 
     window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("keyup", handleKeyUp);
+    window.addEventListener("blur", stopMoving);
 
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("keyup", handleKeyUp);
+      window.removeEventListener("blur", stopMoving);
     };
+  }, [screen]);
+
+  // Continuous player movement
+  useEffect(() => {
+    if (screen !== "playing") return;
+
+    const interval = setInterval(() => {
+      const direction = movementDirection.current;
+
+      if (direction === 0) return;
+
+      setGame((previous) => ({
+        ...previous,
+        playerX: Math.max(
+          5,
+          Math.min(95, previous.playerX + direction * 2)
+        ),
+      }));
+    }, 50);
+
+    return () => clearInterval(interval);
   }, [screen]);
 
   // Game engine
@@ -175,9 +230,24 @@ function LevelOne({ playerName, character, onBack, onNext }) {
   // Finish game
   useEffect(() => {
     if (screen === "playing" && game.timeLeft === 0) {
+      stopMoving();
       setScreen("finished");
     }
   }, [game.timeLeft, screen]);
+
+  // Reset movement when leaving gameplay
+  useEffect(() => {
+    if (screen !== "playing") {
+      stopMoving();
+    }
+  }, [screen]);
+
+  // Cleanup
+  useEffect(() => {
+    return () => {
+      movementDirection.current = 0;
+    };
+  }, []);
 
   const won = game.score >= TARGET_SCORE;
 
@@ -188,9 +258,11 @@ function LevelOne({ playerName, character, onBack, onNext }) {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
-      {/* Animated background */}
+      {/* Animated Background */}
+
       <div className="animated-background">
         <div className="night-moon" />
+
         <div className="night-cloud cloud-one" />
         <div className="night-cloud cloud-two" />
         <div className="night-cloud cloud-three" />
@@ -229,8 +301,8 @@ function LevelOne({ playerName, character, onBack, onNext }) {
       <div className="deadline-container">
 
         {/* Header */}
-        <div className="deadline-heading">
 
+        <div className="deadline-heading">
           <button className="deadline-back" onClick={onBack}>
             <ArrowLeft size={18} />
             <span>Back</span>
@@ -243,10 +315,10 @@ function LevelOne({ playerName, character, onBack, onNext }) {
           </div>
 
           <div className="deadline-level">LVL 01</div>
-
         </div>
 
         {/* Instructions */}
+
         {screen === "instructions" && (
           <motion.div
             className="instruction-card"
@@ -347,16 +419,15 @@ function LevelOne({ playerName, character, onBack, onNext }) {
               <Play size={19} fill="currentColor" />
               START PLAYING
             </motion.button>
-
           </motion.div>
         )}
 
         {/* Gameplay */}
+
         {screen === "playing" && (
           <div className="game-content">
 
             <div className="game-hud">
-
               <div className="hud-box">
                 <span>SCORE</span>
                 <strong>{game.score}</strong>
@@ -371,7 +442,6 @@ function LevelOne({ playerName, character, onBack, onNext }) {
                 <span>TARGET</span>
                 <strong>{TARGET_SCORE}</strong>
               </div>
-
             </div>
 
             <div className="deadline-arena">
@@ -379,6 +449,8 @@ function LevelOne({ playerName, character, onBack, onNext }) {
               <div className="arena-message">
                 COLLECT. SURVIVE. REPEAT.
               </div>
+
+              {/* Falling Items */}
 
               {game.items.map((item) => (
                 <div
@@ -403,9 +475,10 @@ function LevelOne({ playerName, character, onBack, onNext }) {
                 </div>
               ))}
 
-              {/* Original selected character */}
+              {/* Selected Character */}
+
               <div
-                className="game-player"
+                className={`game-player ${isMoving ? "is-running" : ""}`}
                 style={{ left: `${game.playerX}%` }}
               >
                 <img
@@ -422,16 +495,22 @@ function LevelOne({ playerName, character, onBack, onNext }) {
 
             </div>
 
+            {/* Game Legend */}
+
             <div className="game-legend">
               <span><FileText size={14} /> +10</span>
               <span><Coffee size={14} /> +20</span>
               <span><Smartphone size={14} /> −5</span>
             </div>
 
-            <div className="mobile-controls">
+            {/* Mobile Controls */}
 
+            <div className="mobile-controls">
               <button
-                onClick={() => movePlayer(-1)}
+                onPointerDown={() => startMoving(-1)}
+                onPointerUp={stopMoving}
+                onPointerLeave={stopMoving}
+                onPointerCancel={stopMoving}
                 aria-label="Move left"
               >
                 <ArrowLeft size={26} />
@@ -440,25 +519,27 @@ function LevelOne({ playerName, character, onBack, onNext }) {
               <span>MOVE YOUR CHARACTER</span>
 
               <button
-                onClick={() => movePlayer(1)}
+                onPointerDown={() => startMoving(1)}
+                onPointerUp={stopMoving}
+                onPointerLeave={stopMoving}
+                onPointerCancel={stopMoving}
                 aria-label="Move right"
               >
                 <ArrowRight size={26} />
               </button>
-
             </div>
 
           </div>
         )}
 
         {/* Result */}
+
         {screen === "finished" && (
           <motion.div
             className="result-card"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
           >
-
             <div className="result-trophy">
               {won ? <Trophy size={48} /> : "💀"}
             </div>
@@ -496,7 +577,6 @@ function LevelOne({ playerName, character, onBack, onNext }) {
             >
               BACK TO MAIN MENU
             </button>
-
           </motion.div>
         )}
 
