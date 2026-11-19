@@ -1,5 +1,7 @@
 
 .game-screen {
+  height: 100vh;
+  height: 100dvh;
   min-height: 100vh;
   width: 100%;
   position: relative;
@@ -26,8 +28,7 @@
   pointer-events: none;
 }
 
-.version,
-.copyright {
+.version {
   position: absolute;
   z-index: 4;
   color: #d5b9ff;
@@ -38,11 +39,6 @@
 .version {
   top: 22px;
   right: 28px;
-}
-
-.copyright {
-  bottom: 18px;
-  left: 25px;
 }
 
 .next-screen {
@@ -65,9 +61,4 @@
     right: 12px;
   }
 
-  .copyright {
-    bottom: 9px;
-    left: 10px;
-    font-size: 10px;
-  }
 }
