@@ -1,7 +1,9 @@
 
+/* Main Screen */
+
 .deadline-screen {
   position: relative;
-  z-index: 1;
+  isolation: isolate;
   height: 100vh;
   height: 100dvh;
   min-height: 100vh;
@@ -13,13 +15,23 @@
   align-items: flex-start;
   overflow: hidden;
   color: #f5f1ff;
-  background: transparent;
+  background: #17152c;
 }
 
-/* Animated background */
+/* Animated Background */
 
 .animated-background {
-  display: none;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    #17152d 0%,
+    #211c3b 55%,
+    #302543 100%
+  );
 }
 
 .night-moon {
@@ -40,18 +52,19 @@
   from {
     box-shadow: 0 0 25px #c9aaff66, 0 0 55px #a88bff33;
   }
+
   to {
     box-shadow: 0 0 35px #c9aaffaa, 0 0 90px #a88bff66;
   }
 }
 
-/* Moving clouds */
+/* Moving Clouds */
 
 .night-cloud {
   position: absolute;
   width: 180px;
   height: 45px;
-  background: #292447;
+  background: #393253;
   border-radius: 50px;
   opacity: 0.55;
   filter: blur(2px);
@@ -102,6 +115,7 @@
   from {
     left: -250px;
   }
+
   to {
     left: 110%;
   }
@@ -126,6 +140,7 @@
     opacity: 0.2;
     transform: scale(0.7);
   }
+
   to {
     opacity: 1;
     transform: scale(1.2);
@@ -152,14 +167,26 @@
   align-content: start;
   gap: 13px 8px;
   padding: 15px 9px;
+  box-sizing: border-box;
   background: #11162e;
   border-top: 2px solid #534575;
 }
 
-.building-0 { height: 100px; }
-.building-1 { height: 155px; }
-.building-2 { height: 125px; }
-.building-3 { height: 175px; }
+.building-0 {
+  height: 100px;
+}
+
+.building-1 {
+  height: 155px;
+}
+
+.building-2 {
+  height: 125px;
+}
+
+.building-3 {
+  height: 175px;
+}
 
 .background-building i {
   width: 7px;
@@ -175,8 +202,13 @@
 }
 
 @keyframes window-light {
-  from { opacity: 0.15; }
-  to { opacity: 0.8; }
+  from {
+    opacity: 0.15;
+  }
+
+  to {
+    opacity: 0.8;
+  }
 }
 
 .background-rooftop {
@@ -184,12 +216,17 @@
   bottom: 0;
   width: 100%;
   height: 25px;
-  background: linear-gradient(90deg, #17162d, #373052, #17162d);
+  background: linear-gradient(
+    90deg,
+    #17162d,
+    #373052,
+    #17162d
+  );
   border-top: 2px solid #75619c;
   box-shadow: 0 -8px 30px #a88bff22;
 }
 
-/* Main layout */
+/* Main Layout */
 
 .deadline-container {
   position: relative;
@@ -199,6 +236,8 @@
   height: 100%;
   margin: 0 auto;
 }
+
+/* Header */
 
 .deadline-heading {
   display: flex;
@@ -218,6 +257,10 @@
   border: 1px solid #574879;
   border-radius: 10px;
   cursor: pointer;
+}
+
+.deadline-back:hover {
+  background: #292341;
 }
 
 .deadline-title {
@@ -254,7 +297,7 @@
   font-weight: 800;
 }
 
-/* Instruction and result cards */
+/* Instruction and Result Cards */
 
 .instruction-card,
 .result-card {
@@ -262,6 +305,7 @@
   max-width: 600px;
   margin: 0 auto;
   padding: 16px 22px;
+  box-sizing: border-box;
   background: rgba(15, 15, 35, 0.88);
   backdrop-filter: blur(18px);
   border: 1px solid rgba(177, 145, 255, 0.3);
@@ -410,7 +454,11 @@
   margin-top: 9px;
   padding: 8px 12px;
   text-align: center;
-  background: linear-gradient(120deg, #282044f2, #201b37f2);
+  background: linear-gradient(
+    120deg,
+    #282044f2,
+    #201b37f2
+  );
   border: 1px solid #71569d;
   border-radius: 13px;
 }
@@ -466,7 +514,11 @@
 
 .start-game-button {
   color: #171126;
-  background: linear-gradient(100deg, #d0b6ff, #9c83ef);
+  background: linear-gradient(
+    100deg,
+    #d0b6ff,
+    #9c83ef
+  );
   box-shadow: 0 5px 25px #9c83ef30;
 }
 
@@ -520,15 +572,19 @@
   color: #ffbd8b;
 }
 
-/* Game arena */
+/* Game Arena */
 
 .deadline-arena {
   position: relative;
   width: 100%;
   height: 440px;
   overflow: hidden;
-  background:
-    linear-gradient(180deg, #17162d 0%, #28213f 65%, #342943 100%);
+  background: linear-gradient(
+    180deg,
+    #17162d 0%,
+    #28213f 65%,
+    #342943 100%
+  );
   border: 1px solid #71569d;
   border-radius: 17px;
   box-shadow: 0 15px 50px #00000055;
@@ -554,10 +610,12 @@
   height: 95px;
   background: #14162b;
   border-top: 2px solid #655180;
+  pointer-events: none;
 }
 
 .arena-message {
   position: absolute;
+  z-index: 2;
   top: 18px;
   left: 0;
   width: 100%;
@@ -568,7 +626,7 @@
   pointer-events: none;
 }
 
-/* Falling objects */
+/* Falling Objects */
 
 .falling-item {
   position: absolute;
@@ -602,11 +660,16 @@
 }
 
 @keyframes item-glow {
-  from { filter: brightness(0.9); }
-  to { filter: brightness(1.3); }
+  from {
+    filter: brightness(0.9);
+  }
+
+  to {
+    filter: brightness(1.3);
+  }
 }
 
-/* Selected character */
+/* Selected Character */
 
 .game-player {
   position: absolute;
@@ -617,7 +680,6 @@
   flex-direction: column;
   align-items: center;
   transform: translateX(-50%);
-  transition: left 0.08s linear;
 }
 
 .player-character-image {
@@ -625,18 +687,24 @@
   height: 125px;
   object-fit: contain;
   object-position: bottom center;
-  image-rendering: pixelated;
   user-select: none;
+  pointer-events: none;
   filter: drop-shadow(0 0 10px #b99aff55);
-  animation: character-breathe 1.5s ease-in-out infinite;
 }
 
-@keyframes character-breathe {
-  0%, 100% {
-    transform: translateY(0);
+/* Running Effect */
+
+.game-player.is-running .player-character-image {
+  animation: character-run 0.22s ease-in-out infinite alternate;
+}
+
+@keyframes character-run {
+  0% {
+    transform: translateY(0) rotate(-3deg) scaleY(0.98);
   }
-  50% {
-    transform: translateY(-4px);
+
+  100% {
+    transform: translateY(-7px) rotate(3deg) scaleY(1.02);
   }
 }
 
@@ -668,7 +736,7 @@
   font-size: 12px;
 }
 
-/* Mobile controls */
+/* Mobile Controls */
 
 .mobile-controls {
   display: none;
@@ -689,6 +757,13 @@
   border: 1px solid #8063af;
   border-radius: 12px;
   cursor: pointer;
+  touch-action: none;
+  user-select: none;
+}
+
+.mobile-controls button:active {
+  background: #514071;
+  transform: scale(0.95);
 }
 
 .mobile-controls span {
@@ -882,5 +957,18 @@
 
   .game-legend {
     gap: 18px;
+  }
+}
+
+/* Reduced Motion */
+
+@media (prefers-reduced-motion: reduce) {
+  .night-cloud,
+  .night-moon,
+  .night-stars span,
+  .background-building i,
+  .falling-item,
+  .game-player.is-running .player-character-image {
+    animation: none;
   }
 }
