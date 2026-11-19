@@ -108,9 +108,6 @@ function App() {
         onToggleSound={() => setSound((previous) => !previous)}
       />
 
-      <div className="copyright">
-        © 2026 BoredAndBeyond ♡
-      </div>
     </main>
   );
 }
