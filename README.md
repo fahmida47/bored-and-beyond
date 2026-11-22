@@ -1,124 +1,74 @@
-# 🎮 BoredAndBeyond
+BoredAndBeyond
 
-### Your boredom ends. The chaos begins.
+An open-world exploration game set in Bangladesh. Two friends are bored during semester break, so they travel across all 7 divisions, finish missions, and unlock the next one.
 
-A little escape from boring university life.  
-Choose your character, enter your name, explore unexpected stories, and survive ridiculous mini-games!
+Explore Bangladesh... Your Way!
 
-**BoredAndBeyond** is a fun, interactive browser-based game built for those moments when university life gets a little too boring.
+About
 
----
+Start in Dhaka, complete the main mission, and unlock the next division. Explore city streets, beaches, rivers, forests, tea gardens and heritage sites.
 
-## ✨ Features
+Features
 
-- 🎭 **Character Selection** — Choose between two playable characters.
-- 📝 **Personalized Experience** — Enter your name and become part of the story.
-- 📖 **Interactive Storytelling** — Explore funny dialogues and unexpected choices.
-- 🎮 **Mini-Games** — Take on different challenges and survive the chaos.
-- 🌙 **Aesthetic Game UI** — Dark night-themed visuals with pixel-inspired elements.
-- 📱 **Responsive Controls** — Play using keyboard or mobile controls.
+Status: work in progress. Checked items are done.
 
-## 🕹️ Level 01: Deadline Dodger
+[ ] Main menu (Start Adventure, Character Select, Settings, Quit)
+[ ] Character select (boy and girl)
+[ ] Player movement (walk, run) with keyboard and touch joystick
+[ ] HUD: money, stars, minimap, mission box
+[ ] Division select screen with locked and unlocked divisions
+[ ] Missions with progress (e.g. 0 / 1)
+[ ] Save progress in the browser (localStorage)
+Divisions
+#	Division	Theme	Main mission
+1	Dhaka	City Adventure	Explore Old Dhaka and find the hidden tag
+2	Chattogram	Coastal Adventure	Take a beach photo
+3	Rajshahi	River Adventure	Coming soon
+4	Khulna	Forest Adventure	Coming soon
+5	Barishal	River Life Adventure	Coming soon
+6	Sylhet	Nature Adventure	Visit Jaflong
+7	Rangpur	Heritage Adventure	Coming soon
+Controls
+Action	Desktop	Mobile
+Move	WASD / Arrow keys	On-screen joystick
+Run	Shift	Run button
+Interact	E	Interact button
+Action	Space	Action button
+Tech stack
+React
+Vite
+JavaScript
+Getting started
 
-**Survive university life. One deadline at a time.**
+Requirements: Node.js 18 or newer.
 
-Your mission is simple: survive the chaos of university life!
-
-| Item | Points |
-|---|---:|
-| 📁 Assignment Files | +10 |
-| ☕ Coffee | +20 |
-| 📱 Reels Notifications | -5 |
-
-**How to Play**
-- Move left and right to collect items.
-- Collect assignments and coffee to earn points.
-- Avoid reels notifications.
-- Survive for 30 seconds.
-- Reach 100 points to win!
-
-**Controls:** Arrow Keys / A-D  
-Mobile players can use the on-screen controls.
-
-## 🛠️ Tech Stack
-
-- **React.js** — Building the user interface
-- **Vite** — Development and build tool
-- **JavaScript** — Game logic and interactions
-- **CSS3** — Styling and animations
-- **Framer Motion** — UI animations
-- **Lucide React** — Icons
-
-## 🚀 Getting Started
-
-Want to run BoredAndBeyond locally?
-
-### 1. Clone the repository
-
-```bash
-git clone https://github.com/fahmida47/bored-and-beyond.git
-```
-
-### 2. Navigate to the project folder
-
-```bash
-cd bored-and-beyond
-```
-
-### 3. Install dependencies
-
-```bash
+bash
+git clone https://github.com/<your-username>/<your-repo>.git
+cd <your-repo>
 npm install
-```
-
-### 4. Start the development server
-
-```bash
 npm run dev
-```
 
-Open the local URL shown in your terminal to play.
+Then open the local URL shown in the terminal (usually http://localhost:5173).
 
-## 📂 Project Structure
+Build for production:
 
-```text
-bored-and-beyond/
-├── public/
-│   └── images/
-├── src/
-│   ├── components/
-│   ├── pages/
-│   ├── styles/
-│   ├── App.jsx
-│   ├── App.css
-│   ├── index.css
-│   └── main.jsx
-├── index.html
-├── package.json
-└── vite.config.js
-```
+bash
+npm run build
+npm run preview
+Project structure
+src/
+  components/   UI (menu, HUD, division select)
+  game/         game logic (movement, missions, save)
+  assets/       images, maps, audio
+  App.jsx
+  main.jsx
 
-## 🚧 Development Status
+Adjust this to match your actual folders.
 
-BoredAndBeyond is currently a work in progress.
-
-More mini-games, story surprises, animations, and chaotic university moments are coming!
-
-## 💜 The Idea
-
-Sometimes you don't need another productivity app.
-
-Sometimes you just need a little chaos.
-
-**Welcome to BoredAndBeyond.**
-
-*Your boredom ends. The chaos begins.*
-
----
-
-### 👩‍💻 Created by
-
-**Fahmida Afrin Nadia**
-
-[GitHub](https://github.com/fahmida47)
-
+Roadmap
+Main menu and character select
+Dhaka map and player movement
+HUD and first mission
+Division unlock and save system
+Remaining 6 divisions
+Mobile controls, sound and polish
