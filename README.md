@@ -1,74 +1,173 @@
-BoredAndBeyond
+# 🎮 BoredAndBeyond: Semester Break
 
-An open-world exploration game set in Bangladesh. Two friends are bored during semester break, so they travel across all 7 divisions, finish missions, and unlock the next one.
+**An Open-World Bangladesh Exploration Game**
 
-Explore Bangladesh... Your Way!
+Explore Bangladesh... Your Way! 🇧🇩
 
-About
+Two friends are bored during their semester break. Instead of staying home, they decide to explore Bangladesh! Travel across all 7 divisions, discover beautiful locations, complete exciting missions, collect rewards, and unlock new adventures.
 
-Start in Dhaka, complete the main mission, and unlock the next division. Explore city streets, beaches, rivers, forests, tea gardens and heritage sites.
+---
 
-Features
+## 🌍 About the Game
 
-Status: work in progress. Checked items are done.
+**BoredAndBeyond: Semester Break** is an open-world exploration game inspired by the beauty, culture, and diversity of Bangladesh.
 
-[ ] Main menu (Start Adventure, Character Select, Settings, Quit)
-[ ] Character select (boy and girl)
-[ ] Player movement (walk, run) with keyboard and touch joystick
-[ ] HUD: money, stars, minimap, mission box
-[ ] Division select screen with locked and unlocked divisions
-[ ] Missions with progress (e.g. 0 / 1)
-[ ] Save progress in the browser (localStorage)
-Divisions
-#	Division	Theme	Main mission
-1	Dhaka	City Adventure	Explore Old Dhaka and find the hidden tag
-2	Chattogram	Coastal Adventure	Take a beach photo
-3	Rajshahi	River Adventure	Coming soon
-4	Khulna	Forest Adventure	Coming soon
-5	Barishal	River Life Adventure	Coming soon
-6	Sylhet	Nature Adventure	Visit Jaflong
-7	Rangpur	Heritage Adventure	Coming soon
-Controls
-Action	Desktop	Mobile
-Move	WASD / Arrow keys	On-screen joystick
-Run	Shift	Run button
-Interact	E	Interact button
-Action	Space	Action button
-Tech stack
-React
-Vite
-JavaScript
-Getting started
+The adventure begins in Dhaka. Players explore city streets, historical landmarks, beaches, rivers, forests, tea gardens, and heritage sites while completing missions.
 
-Requirements: Node.js 18 or newer.
+Every completed main mission unlocks the next division, allowing players to explore more of Bangladesh.
 
-bash
+## ✨ Features
+
+**Development Status: Work in Progress 🚧**
+
+- [ ] Main Menu (Start Adventure, Character Select, Settings, Quit)
+- [ ] Character Selection (Boy and Girl)
+- [ ] Player Movement (Walk and Run)
+- [ ] Keyboard and Mobile Touch Controls
+- [ ] HUD (Money, Stars, Minimap, Mission Box)
+- [ ] Division Selection Screen
+- [ ] Locked and Unlocked Divisions
+- [ ] Mission System with Progress Tracking
+- [ ] Browser-based Save System (`localStorage`)
+
+## 🗺️ Explore All 7 Divisions
+
+| # | Division | Adventure Theme | Main Mission |
+|---|---|---|---|
+| 1 | Dhaka | 🏙️ City Adventure | Explore Old Dhaka and find the hidden tag |
+| 2 | Chattogram | 🏖️ Coastal Adventure | Take a beach photo |
+| 3 | Rajshahi | 🌊 River Adventure | Coming Soon |
+| 4 | Khulna | 🌳 Forest Adventure | Coming Soon |
+| 5 | Barishal | 🚤 River Life Adventure | Coming Soon |
+| 6 | Sylhet | 🍃 Nature Adventure | Visit Jaflong |
+| 7 | Rangpur | 🏛️ Heritage Adventure | Coming Soon |
+
+## 🎯 Gameplay
+
+- Explore different environments across Bangladesh.
+- Complete main missions and discover hidden locations.
+- Earn money and collect stars.
+- Unlock new divisions by completing missions.
+- Experience Bangladesh through an adventurous journey.
+
+## 🎮 Controls
+
+| Action | Desktop | Mobile |
+|---|---|---|
+| Move | WASD / Arrow Keys | On-screen Joystick |
+| Run | Shift | Run Button |
+| Interact | E | Interact Button |
+| Action | Space | Action Button |
+
+## 🛠️ Tech Stack
+
+- **React** – User Interface
+- **Vite** – Development and Build Tool
+- **JavaScript** – Game Logic
+- **CSS** – Styling and Animations
+- **localStorage** – Save Game Progress
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+Make sure you have installed:
+
+- [Node.js](https://nodejs.org/) (Version 18 or newer)
+- npm
+- Git
+
+### Installation
+
+**1. Clone the repository**
+
+```bash
 git clone https://github.com/<your-username>/<your-repo>.git
+```
+
+**2. Navigate to the project folder**
+
+```bash
 cd <your-repo>
+```
+
+**3. Install dependencies**
+
+```bash
 npm install
+```
+
+**4. Start the development server**
+
+```bash
 npm run dev
+```
 
-Then open the local URL shown in the terminal (usually http://localhost:5173).
+**5. Open the game**
 
-Build for production:
+Visit the local URL shown in your terminal (usually http://localhost:5173).
 
-bash
+### Build for Production
+
+```bash
 npm run build
+```
+
+### Preview Production Build
+
+```bash
 npm run preview
-Project structure
-src/
-  components/   UI (menu, HUD, division select)
-  game/         game logic (movement, missions, save)
-  assets/       images, maps, audio
-  App.jsx
-  main.jsx
+```
 
-Adjust this to match your actual folders.
+## 📁 Project Structure
 
-Roadmap
-Main menu and character select
-Dhaka map and player movement
-HUD and first mission
-Division unlock and save system
-Remaining 6 divisions
-Mobile controls, sound and polish
+```text
+BoredAndBeyond/
+│
+├── public/
+│
+├── src/
+│   ├── assets/          # Game images, maps and audio
+│   │
+│   ├── components/      # Reusable UI components
+│   │
+│   ├── game/            # Game logic and mechanics
+│   │
+│   ├── App.jsx
+│   ├── App.css
+│   ├── index.css
+│   └── main.jsx
+│
+├── index.html
+├── package.json
+└── README.md
+```
+
+*Note: The structure may evolve as development progresses.*
+
+## 🛣️ Development Roadmap
+
+- [ ] Phase 01 – Main Menu and Character Selection
+- [ ] Phase 02 – Dhaka Map and Player Movement
+- [ ] Phase 03 – HUD and First Mission
+- [ ] Phase 04 – Division Unlock and Save System
+- [ ] Phase 05 – Chattogram Adventure
+- [ ] Phase 06 – Remaining Five Divisions
+- [ ] Phase 07 – Mobile Controls and Optimization
+- [ ] Phase 08 – Sound Effects, Animations and Final Polish
+
+## 💡 Vision
+
+This project aims to turn the beauty of Bangladesh into an interactive gaming experience.
+
+From the busy streets of Dhaka to the peaceful tea gardens of Sylhet, every division has something unique to discover.
+
+**Seven divisions. Countless adventures. One unforgettable semester break!**
+
+---
+
+## ❤️ Made with Love
+
+Created as a fun journey into game development, creativity, and the beauty of Bangladesh.
+
+**Explore Bangladesh... Your Way! 🇧🇩🎮**
