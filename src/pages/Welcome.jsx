@@ -1,78 +1,56 @@
+import { useEffect } from "react";
+import "../styles/Welcome.css"
+import bgImage from "../assets/images/bg.jpg"
 
-import { motion } from "framer-motion";
-import { Play, Settings, Star, DoorOpen } from "lucide-react";
-import "../styles/Welcome.css";
+const Welcome = ({ onStart, onSettings, onAbout, onExit }) => {
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Enter") {
+        onStart?.();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [onStart]);
 
-function Welcome({ onStart, onSettings, onCredits, onExit }) {
   return (
-    <motion.section
-      className="welcome-content"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-    >
-      <div className="title-area">
-        <div className="little-crown">♛</div>
+    <div className="welcome-screen">
+      <div className="welcome-game-wrapper">
+        <img
+          src={bgImage}
+          alt="BoredAndBeyond Background"
+          className="welcome-bg-image"
+        />
 
-        <h1 className="game-title">
-          BoredAnd
-          <span>Beyond</span>
-        </h1>
-
-        <p className="tagline">
-          Nothing productive happens here. Promise. ♡
-        </p>
-
-        <div className="title-decoration">
-          ✦ ───── ♡ ───── ✦
+        <div className="welcome-menu-overlay">
+          <button
+            type="button"
+            className="welcome-hotspot-btn welcome-primary-glow"
+            onClick={onStart}
+            aria-label="Start Adventure"
+          />
+          <button
+            type="button"
+            className="welcome-hotspot-btn welcome-secondary-glow"
+            onClick={onSettings}
+            aria-label="Settings"
+          />
+          <button
+            type="button"
+            className="welcome-hotspot-btn welcome-secondary-glow"
+            onClick={onAbout}
+            aria-label="About"
+          />
+          <button
+            type="button"
+            className="welcome-hotspot-btn welcome-secondary-glow"
+            onClick={onExit}
+            aria-label="Quit Game"
+          />
         </div>
       </div>
-
-      <nav className="main-menu">
-        <motion.button
-          className="game-button start-button"
-          whileHover={{ scale: 1.06, y: -3 }}
-          whileTap={{ scale: 0.95 }}
-          onClick={onStart}
-        >
-          <Play size={21} fill="currentColor" />
-          <span>Start Game</span>
-        </motion.button>
-
-        <motion.button
-          className="game-button"
-          whileHover={{ scale: 1.04, x: 5 }}
-          whileTap={{ scale: 0.95 }}
-          onClick={onSettings}
-        >
-          <Settings size={20} />
-          <span>Settings</span>
-        </motion.button>
-
-        <motion.button
-          className="game-button"
-          whileHover={{ scale: 1.04, x: 5 }}
-          whileTap={{ scale: 0.95 }}
-          onClick={onCredits}
-        >
-          <Star size={20} fill="currentColor" />
-          <span>Credits</span>
-        </motion.button>
-
-        <motion.button
-          className="game-button"
-          whileHover={{ scale: 1.04, x: 5 }}
-          whileTap={{ scale: 0.95 }}
-          onClick={onExit}
-        >
-          <DoorOpen size={20} />
-          <span>Exit</span>
-        </motion.button>
-      </nav>
-
-      <p className="footer-note">Play. Chill. Repeat. ♡</p>
-    </motion.section>
+    </div>
   );
-}
+};
 
 export default Welcome;
