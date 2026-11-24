@@ -1,13 +1,15 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowLeft, Sparkles } from "lucide-react";
+import { ArrowLeft, MapPin, Sparkles, ArrowRight } from "lucide-react";
 import "../styles/NameEntry.css";
 
 function NameEntry({ character, onContinue, onBack }) {
-  const [playerName, setPlayerName] = useState("");
+  const [playerName, setPlayerName] = useState("Traveler");
 
-  const handleContinue = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
     const name = playerName.trim();
 
     if (!name) return;
@@ -16,62 +18,84 @@ function NameEntry({ character, onContinue, onBack }) {
   };
 
   return (
-    <motion.section
-      className="name-screen"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -20 }}
-    >
+    <main className="name-screen">
       <button className="name-back" onClick={onBack}>
         <ArrowLeft size={18} />
         Back
       </button>
 
-      <div className="name-box">
-        <div className="name-sparkle">✦ ✧ ✦</div>
-
-        <p className="name-eyebrow">ONE LAST THING...</p>
-
-        <h1>What's your name?</h1>
-
-        <p className="name-description">
-          So we know who to blame for all this chaos. ♡
-        </p>
-
-        <div className="selected-character">
-          You picked:{" "}
-          <strong>
-            {character === "boy" ? "The Boy" : "The Girl"}
-          </strong>
+      <motion.section
+        className="name-card"
+        initial={{ opacity: 0, y: 35 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+      >
+        <div className="name-icon">
+          <MapPin size={30} />
         </div>
 
-        <input
-          type="text"
-          className="player-name-input"
-          placeholder="Enter your name..."
-          value={playerName}
-          onChange={(event) => setPlayerName(event.target.value)}
-          maxLength={20}
-          onKeyDown={(event) => {
-            if (event.key === "Enter") handleContinue();
-          }}
-        />
+        <span className="name-eyebrow">
+          <Sparkles size={15} />
+          YOUR ADVENTURE AWAITS
+        </span>
 
-        <button
-          className="name-continue"
-          onClick={handleContinue}
-          disabled={!playerName.trim()}
-        >
-          <Sparkles size={17} />
-          LET'S GO!
-        </button>
+        <h1>
+          What's Your <span>Name?</span>
+        </h1>
 
-        <p className="name-footer">
-          Don't worry, your name won't be used against you. Probably.
+        <p className="name-description">
+          Every legend needs a name. What should we call you?
         </p>
-      </div>
-    </motion.section>
+
+        <div className="name-character-preview">
+          <img
+            src={
+              character === "boy"
+                ? "/images/boy-character.png"
+                : "/images/girl-character.png"
+            }
+            alt="Selected character"
+          />
+
+          <div>
+            <span>YOUR SELECTED CHARACTER</span>
+            <strong>
+              {character === "boy" ? "The Boy" : "The Girl"}
+            </strong>
+          </div>
+        </div>
+
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="player-name">PLAYER NAME</label>
+
+          <input
+            id="player-name"
+            type="text"
+            placeholder="Enter your name..."
+            value={playerName}
+            onChange={(e) => setPlayerName(e.target.value)}
+            maxLength={18}
+            autoComplete="off"
+            required
+          />
+
+          <button
+            type="submit"
+            className="name-continue"
+            disabled={!playerName.trim()}
+          >
+            Start My Journey
+            <ArrowRight size={20} />
+          </button>
+        </form>
+
+        <div className="name-footer">
+          SEVEN DIVISIONS. ONE BIG ADVENTURE.
+        </div>
+      </motion.section>
+    </main>
   );
 }
 
 export default NameEntry;
+
