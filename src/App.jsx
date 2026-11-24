@@ -1,114 +1,115 @@
-
-import { useState } from "react";
-import { AnimatePresence } from "framer-motion";
+﻿import { useState } from "react";
 
 import Welcome from "./pages/Welcome";
-import CharacterSelect from "./pages/CharacterSelect";
+import CharacterSelect from "./pages/SelectCharacter";
 import NameEntry from "./pages/NameEntry";
-import Story from "./pages/Story";
-import LevelOne from "./pages/LevelOne";
+import DivisionSelect from "./pages/DivisionSelect";
 
-import Modal from "./components/Modal";
+// Game world
+import GameWorld from "./game/world/GameWorld";
 
 import "./App.css";
 
 function App() {
-  const [screen, setScreen] = useState("welcome");
-  const [modal, setModal] = useState("");
+  const [currentPage, setCurrentPage] = useState("welcome");
 
-  const [character, setCharacter] = useState("");
+  const [selectedCharacter, setSelectedCharacter] = useState(null);
   const [playerName, setPlayerName] = useState("");
+  const [selectedDivision, setSelectedDivision] = useState(null);
 
-  const [sound, setSound] = useState(true);
+  const [completedDivisions, setCompletedDivisions] = useState([]);
 
-  const handleCharacterSelect = (choice) => {
-    setCharacter(choice);
-    setScreen("name");
+  // Character selection
+  const handleCharacterSelect = (character) => {
+    setSelectedCharacter(character);
+    setCurrentPage("name");
   };
 
+  // Player name
   const handleNameContinue = (name) => {
-    setPlayerName(name);
-    setScreen("story");
+    setPlayerName(name.trim());
+    setCurrentPage("divisions");
   };
 
-  const handleStartLevel = () => {
-    setScreen("levelOne");
+  // Division selection
+  const handleDivisionSelect = (division) => {
+    setSelectedDivision(division);
+    setCurrentPage("game");
   };
 
-  const handleBackToStory = () => {
-    setScreen("story");
+  // Complete a division
+  const handleDivisionComplete = () => {
+    if (!selectedDivision) return;
+
+    setCompletedDivisions((previous) => {
+      if (previous.includes(selectedDivision)) {
+        return previous;
+      }
+
+      return [...previous, selectedDivision];
+    });
+
+    setCurrentPage("divisions");
   };
 
+  // Restart game
   const handleRestart = () => {
-    setCharacter("");
+    setSelectedCharacter(null);
     setPlayerName("");
-    setScreen("welcome");
+    setSelectedDivision(null);
+    setCompletedDivisions([]);
+    setCurrentPage("welcome");
   };
 
   return (
-    <main className="game-screen">
-      <div className="background-overlay" />
+    <div className="app-container">
+      {currentPage === "welcome" && (
+        <Welcome
+          onStart={() => setCurrentPage("character")}
+          onSettings={() => alert("Settings coming soon!")}
+          onAbout={() =>
+            alert(
+              "BoredAndBeyond — Goriber GTA 6. Explore Bangladesh, one division at a time!"
+            )
+          }
+          onExit={() => alert("Thanks for playing BoredAndBeyond!")}
+        />
+      )}
 
-      <div className="version">v1.0.0</div>
+      {currentPage === "character" && (
+        <CharacterSelect
+          onSelect={handleCharacterSelect}
+          onBack={() => setCurrentPage("welcome")}
+        />
+      )}
 
-      <AnimatePresence mode="wait">
+      {currentPage === "name" && (
+        <NameEntry
+          character={selectedCharacter}
+          onContinue={handleNameContinue}
+          onBack={() => setCurrentPage("character")}
+        />
+      )}
 
-        {screen === "welcome" && (
-          <Welcome
-            key="welcome"
-            onStart={() => setScreen("character")}
-            onSettings={() => setModal("settings")}
-            onCredits={() => setModal("credits")}
-            onExit={() => setModal("exit")}
-          />
-        )}
+      {currentPage === "divisions" && (
+        <DivisionSelect
+          playerName={playerName}
+          completed={completedDivisions}
+          onSelect={handleDivisionSelect}
+          onBack={() => setCurrentPage("name")}
+        />
+      )}
 
-        {screen === "character" && (
-          <CharacterSelect
-            key="character"
-            onSelect={handleCharacterSelect}
-            onBack={() => setScreen("welcome")}
-          />
-        )}
-
-        {screen === "name" && (
-          <NameEntry
-            key="name"
-            character={character}
-            onContinue={handleNameContinue}
-            onBack={() => setScreen("character")}
-          />
-        )}
-
-        {screen === "story" && (
-          <Story
-            key="story"
-            playerName={playerName}
-            character={character}
-            onStartLevel={handleStartLevel}
-          />
-        )}
-
-        {screen === "levelOne" && (
-          <LevelOne
-            key="levelOne"
-            playerName={playerName}
-            character={character}
-            onBack={handleBackToStory}
-            onNext={handleRestart}
-          />
-        )}
-
-      </AnimatePresence>
-
-      <Modal
-        type={modal}
-        onClose={() => setModal("")}
-        sound={sound}
-        onToggleSound={() => setSound((previous) => !previous)}
-      />
-
-    </main>
+      {currentPage === "game" && (
+        <GameWorld
+          playerName={playerName}
+          character={selectedCharacter}
+          division={selectedDivision}
+          onBack={() => setCurrentPage("divisions")}
+          onComplete={handleDivisionComplete}
+        />
+      )}
+    </div>
   );
 }
 
