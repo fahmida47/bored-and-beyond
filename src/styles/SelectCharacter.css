@@ -1,0 +1,262 @@
+
+.character-screen {
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: 35px 6%;
+  box-sizing: border-box;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background:
+    radial-gradient(ellipse at 20% 45%, #253c70 0%, transparent 45%),
+    radial-gradient(ellipse at 80% 45%, #642c6b 0%, transparent 45%),
+    #101329;
+  color: white;
+  font-family: 'Outfit', sans-serif;
+}
+
+.character-background-glow {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 10%, rgba(255,255,255,0.08), transparent 35%);
+}
+
+.character-back {
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 11px 18px;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 9px;
+  background: rgba(20, 25, 55, 0.8);
+  color: white;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.character-back:hover {
+  border-color: #ff42b5;
+  transform: translateX(-4px);
+}
+
+.character-heading {
+  text-align: center;
+  margin: 35px 0 40px;
+}
+
+.character-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #ff78c8;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.character-heading h1 {
+  margin: 13px 0;
+  font-size: clamp(32px, 5vw, 54px);
+  font-weight: 900;
+}
+
+.character-heading h1 span {
+  color: #ff45b6;
+}
+
+.character-heading p {
+  color: #b9bfd9;
+  font-size: 15px;
+}
+
+.character-grid {
+  width: 100%;
+  max-width: 900px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 30px;
+}
+
+.character-card {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 20px;
+  background: rgba(20, 27, 57, 0.9);
+  transition: box-shadow 0.3s, border-color 0.3s;
+}
+
+.boy-card:hover {
+  border-color: #46a5ff;
+  box-shadow: 0 0 30px rgba(70,165,255,0.25);
+}
+
+.girl-card:hover {
+  border-color: #ff55b9;
+  box-shadow: 0 0 30px rgba(255,85,185,0.25);
+}
+
+.character-number {
+  position: absolute;
+  z-index: 2;
+  top: 18px;
+  left: 18px;
+  color: #aeb9d8;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.character-art {
+  height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: linear-gradient(145deg, #244d85, #182344);
+}
+
+.girl-card .character-art {
+  background: linear-gradient(145deg, #783d79, #2b214a);
+}
+
+.character-art img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center bottom;
+  image-rendering: pixelated;
+  transition: transform 0.4s ease;
+}
+
+.character-card:hover .character-art img {
+  transform: scale(1.06);
+}
+
+.character-info {
+  padding: 22px;
+}
+
+.character-info h2 {
+  margin: 0;
+  font-size: 25px;
+  font-weight: 900;
+}
+
+.character-info p {
+  color: #b7bdd3;
+  font-size: 13px;
+}
+
+.character-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 18px 0;
+}
+
+.character-tags span {
+  padding: 7px 11px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.08);
+  color: #dce2fa;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.character-select-button {
+  width: 100%;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  border: none;
+  border-radius: 9px;
+  background: linear-gradient(100deg, #1675ed, #3c9fff);
+  color: white;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.girl-card .character-select-button {
+  background: linear-gradient(100deg, #e52b9b, #ff69b5);
+}
+
+.character-select-button:hover {
+  filter: brightness(1.15);
+  transform: translateY(-2px);
+}
+
+.character-footer {
+  margin-top: 35px;
+  color: #858eaf;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 3px;
+}
+
+@media (max-width: 650px) {
+  .character-screen {
+    padding: 22px 16px;
+  }
+
+  .character-heading {
+    margin: 30px 0;
+  }
+
+  .character-grid {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+  }
+
+  .character-art {
+    height: 280px;
+  }
+}
+.character-screen {
+  height: 100vh;
+  height: 100dvh;
+  min-height: 520px;
+  padding: clamp(18px, 3vw, 38px) 6%;
+  background: radial-gradient(ellipse at 18% 20%, #355287, transparent 48%), linear-gradient(140deg, #171735, #3e2359);
+}
+.character-background-glow { background: linear-gradient(180deg, rgba(18,10,34,.24), rgba(8,13,35,.48)); }
+.character-back { z-index: 3; padding: 8px 13px; background: rgba(12,14,35,.75); }
+.character-heading { margin: 10px 0 24px; padding: 7px 30px; background: rgba(10,11,33,.82); transform: skewX(-5deg); }
+.character-eyebrow, .character-heading p, .character-footer, .character-number, .character-info p, .character-tags { display: none; }
+.character-heading h1 { margin: 0; font-size: clamp(26px, 3vw, 40px); font-style: italic; }
+.character-grid { flex: 1; width: min(760px, 100%); max-width: 760px; grid-template-columns: repeat(2, minmax(0, 1fr)); align-content: center; gap: 20px; }
+.character-card { height: min(55vh, 420px); border: 2px solid var(--card-accent); border-radius: 15px; background: rgba(10,14,37,.72); box-shadow: 0 0 22px color-mix(in srgb, var(--card-accent) 42%, transparent); }
+.boy-card { --card-accent: #38aaff; }
+.girl-card { --card-accent: #ff3fba; }
+.character-art { height: 100%; background: linear-gradient(180deg, rgba(19,37,83,.34), rgba(12,13,35,.9)); }
+.girl-card .character-art { background: linear-gradient(180deg, rgba(94,37,94,.28), rgba(20,12,40,.9)); }
+.character-art img { object-fit: contain; object-position: center bottom; image-rendering: auto; }
+.character-info { position: absolute; left: 12px; right: 12px; bottom: 12px; padding: 0; }
+.character-info h2 { display: none; }
+.character-select-button { width: fit-content; min-width: 130px; min-height: 40px; padding: 0 20px; border: 2px solid #6eb9ff; border-radius: 10px; background: #075bd7; font-size: 17px; }
+.girl-card .character-select-button { border-color: #ff71c9; background: #c80079; }
+@media (max-width: 650px) {
+  .character-screen { min-height: 560px; padding: 16px; }
+  .character-heading { margin: 22px 0 16px; padding: 8px 10px; }
+  .character-grid { gap: 12px; }
+  .character-card { height: min(52vh, 390px); }
+  .character-info { left: 7px; right: 7px; bottom: 7px; }
+  .character-select-button { min-width: 0; min-height: 36px; padding: 0 11px; font-size: 14px; }
+}
+
+
