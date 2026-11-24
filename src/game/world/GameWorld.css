@@ -1,0 +1,26 @@
+.game-world { position: relative; width: 100%; height: 100vh; height: 100dvh; overflow: hidden; background: #17152c; color: white; font-family: 'Outfit', sans-serif; }
+.game-world canvas { position: absolute; inset: 0; }
+.game-hud { position: absolute; inset: 14px 18px auto; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 12px; pointer-events: none; }
+.hud-back, .hud-location, .hud-stats { width: fit-content; min-height: 36px; display: flex; align-items: center; gap: 8px; padding: 7px 11px; border: 1px solid rgba(255,255,255,.18); border-radius: 9px; background: rgba(13,17,36,.82); color: white; font: inherit; font-size: 12px; font-weight: 800; backdrop-filter: blur(8px); }
+.hud-back { cursor: pointer; pointer-events: auto; }
+.hud-location { justify-self: center; }
+.hud-stats { justify-self: end; gap: 14px; }
+.hud-stats span { display: flex; gap: 3px; color: #ff384e; }
+.hud-stats span svg { width: 18px; height: 18px; fill: currentColor; }
+.hud-stats strong { color: #3aff60; font-size: 16px; text-shadow: 1px 2px #101020; }
+.mission-panel { position: absolute; top: 62px; right: 18px; width: min(245px, calc(100% - 36px)); padding: 12px; border: 1px solid rgba(255,69,182,.58); border-radius: 9px; background: rgba(11,14,31,.86); box-shadow: 0 8px 20px rgba(0,0,0,.2); }
+.mission-label { display: flex; align-items: center; gap: 6px; color: #ff4db4; font-size: 12px; font-weight: 900; }
+.mission-panel p { margin: 7px 0; font-size: 12px; font-weight: 700; line-height: 1.35; }
+.mission-progress { height: 4px; overflow: hidden; background: #33364a; border-radius: 9px; }
+.mission-progress span { display: block; height: 100%; background: #ff39af; transition: width .3s; }
+.mission-panel small { display: block; margin-top: 5px; color: #e8e9f1; text-align: right; font-size: 10px; }
+.mission-continue { width: 100%; margin-top: 8px; padding: 7px; border: 0; border-radius: 6px; background: #ea168e; color: white; font-weight: 800; cursor: pointer; }
+.game-controls { position: absolute; left: 18px; bottom: 16px; display: grid; gap: 4px; padding: 8px 10px; border-radius: 7px; background: rgba(12,14,29,.76); font-size: 11px; }
+.game-controls b { color: #fff; }
+.game-action, .game-bag { position: absolute; right: 76px; bottom: 18px; width: 48px; height: 48px; display: grid; place-items: center; border: 1px solid rgba(255,255,255,.25); border-radius: 50%; background: rgba(15,17,34,.8); color: white; cursor: pointer; }
+.game-bag { right: 18px; }
+.minimap { position: absolute; left: 18px; top: 62px; width: 92px; height: 92px; display: grid; place-items: center; border: 3px solid rgba(13,17,35,.85); border-radius: 50%; background: radial-gradient(circle, rgba(73,108,90,.8), rgba(40,60,70,.92)); box-shadow: 0 3px 12px #151525; }
+.map-pin { color: #ff46ba; font-size: 23px; text-shadow: 0 2px 4px #171525; }
+.minimap small { position: absolute; bottom: 9px; padding: 2px 5px; border-radius: 3px; background: rgba(10,12,24,.72); font-size: 9px; }
+.world-player { position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%); padding: 5px 9px; border-radius: 9px; background: rgba(10,12,26,.58); font-size: 11px; }
+@media (max-width: 600px) { .game-hud { inset: 10px 10px auto; grid-template-columns: auto 1fr auto; gap: 5px; } .hud-back, .hud-location, .hud-stats { min-height: 32px; gap: 5px; padding: 5px 7px; font-size: 10px; } .hud-location { overflow: hidden; max-width: 34vw; } .hud-stats { gap: 6px; } .hud-stats span svg { width: 14px; } .mission-panel { top: 53px; right: 10px; width: 195px; padding: 9px; } .minimap { top: 53px; left: 10px; width: 70px; height: 70px; } .game-controls { left: 10px; bottom: 10px; font-size: 9px; } .game-action { right: 61px; bottom: 10px; width: 42px; height: 42px; } .game-bag { right: 10px; bottom: 10px; width: 42px; height: 42px; } .world-player { display: none; } }
