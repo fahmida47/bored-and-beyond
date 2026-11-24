@@ -1,136 +1,212 @@
 
 .name-screen {
-  position: relative;
-  z-index: 2;
-  width: 100%;
-  min-height: 80vh;
+  min-height: 100vh;
+  min-height: 100dvh;
+  box-sizing: border-box;
+  padding: 30px 6%;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  padding: 80px 20px 30px;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 20% 20%, #333d79, transparent 45%),
+    radial-gradient(ellipse at 80% 80%, #74366d, transparent 45%),
+    #101329;
   color: white;
+  font-family: 'Outfit', sans-serif;
 }
 
 .name-back {
   position: absolute;
-  top: 15px;
-  left: 3%;
+  top: 28px;
+  left: 6%;
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 11px 20px;
+  padding: 11px 18px;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 9px;
+  background: rgba(20,25,55,0.8);
   color: white;
-  background: rgba(20, 15, 65, 0.85);
-  border: 2px solid #a98bff;
-  border-radius: 10px;
+  font: inherit;
+  font-weight: 700;
   cursor: pointer;
 }
 
-.name-box {
-  width: min(480px, 100%);
-  padding: 45px 35px;
-  text-align: center;
-  border: 2px solid #d18bff;
-  border-radius: 25px;
-  background: rgba(26, 15, 75, 0.92);
-  box-shadow: 0 0 35px rgba(190, 100, 255, 0.3);
+.name-back:hover {
+  border-color: #ff45b6;
 }
 
-.name-sparkle {
-  color: #ffd36e;
-  font-size: 27px;
-  margin-bottom: 15px;
+.name-card {
+  width: 100%;
+  max-width: 480px;
+  box-sizing: border-box;
+  padding: 40px;
+  border: 1px solid rgba(255, 90, 190, 0.35);
+  border-radius: 22px;
+  background: rgba(12, 16, 42, 0.88);
+  box-shadow: 0 0 55px rgba(203, 45, 190, 0.15);
+  text-align: center;
+}
+
+.name-icon {
+  width: 65px;
+  height: 65px;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 20px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #ff299f, #8b42ed);
+  box-shadow: 0 0 25px rgba(255, 41, 159, 0.35);
 }
 
 .name-eyebrow {
-  color: #dba8ff;
-  letter-spacing: 4px;
-  font-size: 13px;
-  font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: #ff79c9;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2px;
 }
 
-.name-box h1 {
-  color: #f0caff;
-  font-size: 36px;
-  margin: 18px 0 10px;
-  text-shadow: 0 0 15px #bd65ff;
+.name-card h1 {
+  margin: 15px 0 10px;
+  font-size: clamp(30px, 5vw, 42px);
+  font-weight: 900;
+}
+
+.name-card h1 span {
+  color: #ff45b6;
 }
 
 .name-description {
-  color: #e5c5ff;
+  margin-bottom: 28px;
+  color: #aeb7d2;
+  font-size: 13px;
   line-height: 1.6;
 }
 
-.selected-character {
-  margin: 25px 0;
-  color: #d8c8ff;
+.name-character-preview {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 16px;
+  margin-bottom: 25px;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 13px;
+  background: rgba(255,255,255,0.05);
+  text-align: left;
 }
 
-.selected-character strong {
-  color: #ffb1f4;
+.name-character-preview img {
+  width: 65px;
+  height: 75px;
+  object-fit: contain;
 }
 
-.player-name-input {
+.name-character-preview div {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.name-character-preview span {
+  color: #9da9ca;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.name-character-preview strong {
+  font-size: 18px;
+}
+
+.name-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: left;
+}
+
+.name-card form label {
+  color: #ff9bd6;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.name-card input {
   width: 100%;
-  padding: 16px;
-  border: 2px solid #a77cff;
-  border-radius: 12px;
+  box-sizing: border-box;
+  padding: 15px;
+  border: 1px solid rgba(170, 110, 255, 0.5);
+  border-radius: 9px;
   outline: none;
-  background: rgba(9, 8, 40, 0.9);
+  background: #090d25;
   color: white;
-  font-size: 16px;
-  text-align: center;
+  font: inherit;
+  font-size: 15px;
 }
 
-.player-name-input:focus {
-  border-color: #f29aff;
-  box-shadow: 0 0 15px rgba(225, 125, 255, 0.4);
-}
-
-.player-name-input::placeholder {
-  color: #9e8bbd;
+.name-card input:focus {
+  border-color: #ff45b6;
+  box-shadow: 0 0 15px rgba(255,69,182,0.2);
 }
 
 .name-continue {
   width: 100%;
-  margin-top: 20px;
-  padding: 15px;
+  min-height: 52px;
   display: flex;
-  justify-content: center;
   align-items: center;
-  gap: 10px;
-  border: 2px solid #f19aff;
-  border-radius: 12px;
-  background: linear-gradient(135deg, #8749bd, #b34fbd);
+  justify-content: center;
+  gap: 12px;
+  margin-top: 8px;
+  border: none;
+  border-radius: 9px;
+  background: linear-gradient(100deg, #ff168f, #bd25d5);
   color: white;
-  font-weight: bold;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 800;
   cursor: pointer;
-  transition: 0.3s;
+  transition: 0.25s;
 }
 
 .name-continue:hover:not(:disabled) {
   transform: translateY(-3px);
-  box-shadow: 0 0 22px #d66cff;
+  box-shadow: 0 8px 22px rgba(255,22,143,0.3);
 }
 
 .name-continue:disabled {
-  opacity: 0.4;
+  opacity: 0.45;
   cursor: not-allowed;
 }
 
 .name-footer {
   margin-top: 25px;
-  color: #bca5d9;
-  font-size: 12px;
-  line-height: 1.5;
+  color: #858eaf;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 2px;
 }
 
-@media (max-width: 480px) {
-  .name-box {
-    padding: 35px 20px;
-  }
-
-  .name-box h1 {
-    font-size: 29px;
+@media (max-width: 500px) {
+  .name-card {
+    padding: 27px 20px;
   }
 }
+.name-screen {
+  background: radial-gradient(ellipse at 20% 20%, #333d79, transparent 45%), linear-gradient(140deg, #101329, #41254f);
+}
+.name-card { border: 1px solid rgba(155,118,255,.65); border-radius: 14px; background: rgba(9,13,40,.92); box-shadow: 0 16px 50px rgba(7,8,32,.38); }
+.name-icon, .name-eyebrow, .name-description, .name-character-preview, .name-footer { display: none; }
+.name-card h1 { margin: 0 0 22px; font-size: 24px; font-style: italic; }
+.name-card h1 span { color: #fff; }
+.name-card form label { color: white; font-size: 16px; }
+.name-card input { background: #090d28; }
+.name-continue { margin-top: 8px; }
+
+
